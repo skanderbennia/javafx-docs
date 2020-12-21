@@ -40,10 +40,6 @@ public class Main extends Application {
 
         primaryStage.setTitle("New window");
 
-        Button button = new Button();
-        button.setText("Click me !");
-        button.setOnAction(e->System.out.println("Clicked"));
-
         Label label_home_scene = new Label("Home");
         Button home_scene_btn = new Button("Please insert your nodes' number");
         home_scene_btn.setOnAction(e -> primaryStage.setScene(insert_nodesSize_scene));
@@ -56,19 +52,11 @@ public class Main extends Application {
         Button nodeName_scene_btn = new Button("Nodes' names");
         nodeName_scene_btn.setOnAction( e-> primaryStage.setScene(kruskal_scene));
 
-
-        Button alert_btn = new Button("Alert");
-        alert_btn.setOnAction(e->AlertBox.display("Alert box","Please be alert !"));
-
-        Button confirm_btn = new Button("Confirm");
-        confirm_btn.setOnAction(e -> {
-            boolean result = ConfirmBox.display("Confirm box", "Are you sure you want to go ?");
-            System.out.println(result);
-        });
-
         TextField node_textField = new TextField();
-        Button validate_username_btn = new Button("Submit");
-        validate_username_btn.setOnAction( e-> {
+        node_textField.setPromptText("Node num");
+
+        Button validate_nodeSize_btn = new Button("Next");
+        validate_nodeSize_btn.setOnAction( e-> {
             System.out.println(node_textField.getText());
             boolean result = is_int(node_textField.getText());
             if (!result){
@@ -141,15 +129,15 @@ public class Main extends Application {
 
         VBox layout_scene1 = new VBox(20);
 
-        layout_scene1.getChildren().addAll(label_home_scene,home_scene_btn,alert_btn,confirm_btn,table,source,nodesList_source,destination,nodesList_destination,poids_textField,add_btn,delete_btn);
+        layout_scene1.getChildren().addAll(label_home_scene,home_scene_btn,table,source,nodesList_source,destination,nodesList_destination,poids_textField,add_btn,delete_btn);
         home_scene = new Scene(layout_scene1,800,600);
 
         VBox layout_insert_nodesSize_scene= new VBox(20);
-        layout_insert_nodesSize_scene.getChildren().addAll(label_insert_nodesSize_scene,node_textField,validate_username_btn,insert_nodesSize_scene_btn);
+        layout_insert_nodesSize_scene.getChildren().addAll(label_insert_nodesSize_scene,node_textField,validate_nodeSize_btn,insert_nodesSize_scene_btn);
         insert_nodesSize_scene = new Scene(layout_insert_nodesSize_scene,800,600);
 
         VBox layout_nodeName_scene = new VBox(20);
-        layout_nodeName_scene.getChildren().addAll(label_nodeName_scene,node_textField,validate_username_btn,insert_nodesSize_scene_btn);
+        layout_nodeName_scene.getChildren().addAll(label_nodeName_scene,node_textField,nodeName_scene_btn);
         nodeName_scene = new Scene(layout_nodeName_scene,400,300);
 
         primaryStage.setScene(home_scene);
